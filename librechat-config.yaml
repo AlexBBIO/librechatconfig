@@ -2848,3 +2848,30 @@ endpoints:
       summaryModel: "grok-beta"
       forcePrompt: false
       modelDisplayLabel: "Grok"
+      
+memory:
+  disabled: false
+  personalize: true
+  tokenLimit: 3000           # bump if you want more room for memory context
+  messageWindowSize: 8       # analyze more recent messages
+
+  # Default: prefer GPT‑5 on OpenRouter
+  agent:
+    provider: "OpenRouter"                 # must match your endpoint name
+    model: "openai/gpt-5"                  # adjust if your OpenRouter slug differs
+    model_parameters:
+      temperature: 0.2
+
+  # Optional named agents so you can switch in presets/agents
+  agents:
+    - id: "mem-gpt5"
+      provider: "OpenRouter"
+      model: "openai/gpt-5"
+      model_parameters:
+        temperature: 0.2
+
+    - id: "mem-sonnet45"
+      provider: "OpenRouter"               # or "anthropic" if using their native API
+      model: "anthropic/claude-4.5-sonnet"
+      model_parameters:
+        temperature: 0.2
